@@ -4,6 +4,18 @@ if not defined VLC set VLC="C:\Program Files\VideoLAN\VLC\vlc.exe"
 if not defined SNDCPY_APK set SNDCPY_APK=sndcpy.apk
 if not defined SNDCPY_PORT set SNDCPY_PORT=28200
 
+if not exist ADB goto continueOne 
+    echo The file adb.exe does not exist at path: %ADB%
+    pause
+    exit /b
+:continueOne
+
+if not exist VLC goto continueTwo
+    echo The file vlc.exe does not exist at path %VLC%
+    pause
+    exit /b
+:continueTwo
+
 if not "%1"=="" (
     set serial=-s %1
     echo Waiting for device %1...
